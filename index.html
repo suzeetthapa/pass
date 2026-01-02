@@ -15,11 +15,12 @@
     <div class="top-actions">
       <button id="lockBtn" class="ghost hidden">Lock</button>
       <button id="wipeCloudBtn" class="danger ghost hidden">Delete</button>
+      <button id="wipeLocalBtn" class="danger ghost">Clear</button>
     </div>
   </header>
 
   <main class="container">
-   
+    <!-- AUTH + UNLOCK -->
     <section id="authView" class="card">
       <h1>Sign in then unlock</h1>
       <p class="muted">Your vault is encrypted in the browser. We stores only ciphertext.
@@ -63,7 +64,7 @@
       </div>
     </section>
 
-    
+    <!-- VAULT -->
     <section id="vaultView" class="hidden">
       <div class="grid">
         <section class="card">

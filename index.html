@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vault (Encrypted) — Firebase</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🔐</span>
+      <span>Vault (Encrypted)</span>
+    </div>
+    <div class="top-actions">
+      <button id="lockBtn" class="ghost hidden">Lock</button>
+      <button id="wipeCloudBtn" class="danger ghost hidden">Delete Cloud Vault</button>
+      <button id="wipeLocalBtn" class="danger ghost">Clear Local Session</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- AUTH + UNLOCK -->
+    <section id="authView" class="card">
+      <h1>Sign in, then unlock</h1>
+      <p class="muted">Your vault is encrypted in the browser. Firebase stores only ciphertext.</p>
+
+      <div class="grid2">
+        <div>
+          <h3 class="subhead">Account (Firebase Auth)</h3>
+
+          <label>Email</label>
+          <input id="email" type="email" placeholder="you@example.com" autocomplete="email" />
+
+          <label>Account password</label>
+          <input id="accountPw" type="password" placeholder="Account password" autocomplete="current-password" />
+
+          <div class="row">
+            <button id="signUpBtn" class="ghost">Sign up</button>
+            <button id="signInBtn" class="primary">Sign in</button>
+            <button id="signOutBtn" class="ghost hidden">Sign out</button>
+          </div>
+
+          <p id="accountStatus" class="muted small"></p>
+        </div>
+
+        <div>
+          <h3 class="subhead">Vault (Master Password)</h3>
+          <p class="muted small">This password derives your encryption key. If you forget it, your vault cannot be recovered.</p>
+
+          <label>Master password</label>
+          <input id="masterPw" type="password" placeholder="Master password" autocomplete="off" />
+
+          <div class="row">
+            <button id="unlockBtn" class="primary">Unlock existing vault</button>
+            <button id="createBtn" class="ghost">Create new vault</button>
+          </div>
+
+          <p id="authMsg" class="msg"></p>
+          <details class="small">
+            <summary>Safety notes</summary>
+            <ul>
+              <li>Use a long passphrase (at least 12+ characters; more is better).</li>
+              <li>This demo protects against backend leaks, but not against malware or XSS in your browser.</li>
+              <li>Always export backups so you can migrate if free tiers change.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- VAULT -->
+    <section id="vaultView" class="hidden">
+      <div class="grid">
+        <section class="card">
+          <h2>Add entry</h2>
+          <form id="entryForm">
+            <input type="hidden" id="entryId" />
+            <label>Site</label>
+            <input id="site" placeholder="example.com" required />
+
+            <label>Username</label>
+            <input id="username" placeholder="you@example.com" />
+
+            <label>Password</label>
+            <div class="inline">
+              <input id="password" placeholder="••••••••" />
+              <button type="button" id="genBtn" class="ghost">Generate</button>
+            </div>
+
+            <label>Notes</label>
+            <textarea id="notes" rows="3" placeholder="Optional"></textarea>
+
+            <div class="row">
+              <button class="primary" type="submit">Save</button>
+              <button type="button" id="clearBtn" class="ghost">Clear</button>
+            </div>
+            <p id="saveMsg" class="msg"></p>
+          </form>
+        </section>
+
+        <section class="card">
+          <div class="list-head">
+            <h2>Entries</h2>
+            <input id="search" placeholder="Search…" />
+          </div>
+
+          <div class="row">
+            <button id="exportBtn" class="ghost">Export encrypted vault</button>
+            <label class="fileBtn ghost">
+              Import encrypted vault
+              <input id="importFile" type="file" accept="application/json" hidden />
+            </label>
+          </div>
+
+          <div id="entries" class="entries"></div>
+          <p id="listMsg" class="msg"></p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="muted small">Client-side encryption (PBKDF2 → AES-GCM). Firebase stores only encrypted blobs.</span>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

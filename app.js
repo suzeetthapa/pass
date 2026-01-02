@@ -289,8 +289,8 @@ function renderEntries() {
           <div class="meta">User: ${escapeHtml(e.username || "—")}</div>
         </div>
         <div class="actions">
-          <button class="ghost" data-act="copyUser" data-id="${e.id}">Copy user</button>
-          <button class="ghost" data-act="copyPw" data-id="${e.id}">Copy password</button>
+          <button class="ghost" data-act="copyUser" data-id="${e.id}">User</button>
+          <button class="ghost" data-act="copyPw" data-id="${e.id}">Pass</button>
           <button class="ghost" data-act="reveal" data-id="${e.id}">Reveal</button>
           <button class="ghost" data-act="edit" data-id="${e.id}">Edit</button>
           <button class="danger ghost" data-act="del" data-id="${e.id}">Delete</button>

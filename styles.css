@@ -96,7 +96,7 @@ button:hover, .fileBtn:hover { border-color: rgba(255,255,255,.22); }
 .entry .top {
   display: flex; justify-content: space-between; gap: 10px; align-items: flex-start;
 }
-.entry .site { font-weight: 900; word-break: break-word; }
+.entry .site { font-weight: 600; word-break: break-word; }
 .entry .meta { color: var(--muted); font-size: 13px; margin-top: 4px; word-break: break-word; }
 .entry .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 
